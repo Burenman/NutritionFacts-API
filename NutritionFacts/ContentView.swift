@@ -55,7 +55,7 @@ struct ContentView: View {
                     .padding(30.0)
                     List {
                         ForEach(foods) { food in
-                            HStack {
+                            VStack {
                                 VStack(alignment: .leading) {
                                     Text("\(food.name)")
                                         .font(.title)
@@ -65,7 +65,7 @@ struct ContentView: View {
                                 }
                                 .minimumScaleFactor(0.01)
                                 Spacer()
-                                VStack(alignment: .trailing) {
+                                VStack(alignment: .leading) {
                                     Text("Serving Size: \(food.serving_size_g, specifier: "%.1f")g")
                                     Text("Total Fat: \(food.fat_total_g, specifier: "%.1f")g")
                                     Text("Saturated Fat: \(food.fat_saturated_g, specifier: "%.1f")g")
