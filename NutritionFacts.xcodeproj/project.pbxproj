@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		773179652AF08D780018C386 /* NutritionFactsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773179642AF08D780018C386 /* NutritionFactsApp.swift */; };
 		773179672AF08D780018C386 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773179662AF08D780018C386 /* ContentView.swift */; };
-		773179692AF08D780018C386 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773179682AF08D780018C386 /* Item.swift */; };
+		773179692AF08D780018C386 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773179682AF08D780018C386 /* Food.swift */; };
 		7731796B2AF08D7B0018C386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7731796A2AF08D7B0018C386 /* Assets.xcassets */; };
 		7731796E2AF08D7B0018C386 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7731796D2AF08D7B0018C386 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		773179612AF08D780018C386 /* NutritionFacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutritionFacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		773179642AF08D780018C386 /* NutritionFactsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionFactsApp.swift; sourceTree = "<group>"; };
 		773179662AF08D780018C386 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		773179682AF08D780018C386 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		773179682AF08D780018C386 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		7731796A2AF08D7B0018C386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7731796D2AF08D7B0018C386 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,7 +55,7 @@
 			children = (
 				773179642AF08D780018C386 /* NutritionFactsApp.swift */,
 				773179662AF08D780018C386 /* ContentView.swift */,
-				773179682AF08D780018C386 /* Item.swift */,
+				773179682AF08D780018C386 /* Food.swift */,
 				7731796A2AF08D7B0018C386 /* Assets.xcassets */,
 				7731796C2AF08D7B0018C386 /* Preview Content */,
 			);
@@ -141,7 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				773179672AF08D780018C386 /* ContentView.swift in Sources */,
-				773179692AF08D780018C386 /* Item.swift in Sources */,
+				773179692AF08D780018C386 /* Food.swift in Sources */,
 				773179652AF08D780018C386 /* NutritionFactsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

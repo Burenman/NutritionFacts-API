@@ -6,56 +6,92 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    
+    @State var foods = [Food]()
+    @State var query: String = ""
+    
+    init(){
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+    }
+    
+    func getNutrition() {
+        Api().loadData(query: self.query) { (foods) in
+            self.foods = foods
+        }
+    }
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        LinearGradient(gradient: Gradient(colors: [Color.red, Color.purple]), startPoint: .top, endPoint: .bottom)
+            .edgesIgnoringSafeArea(.vertical)
+            .overlay(
+                VStack(alignment: .leading) {
+                    VStack {
+                        TextField(
+                            "Enter some food text",
+                            text: $query
+                        )
+                        .multilineTextAlignment(.center)
+                        .font(Font.title.weight(.light))
+                        .foregroundColor(Color.white)
+                        .padding()
+                        HStack {
+                            Spacer()
+                            Button(action: getNutrition) {
+                                Text("Get Nutrition")
+                                    .padding()
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 50)
+                                            .stroke(Color.white, lineWidth: 2)
+                                    )
+                            }
+                            .font(.title2)
+                            .foregroundColor(Color.white)
+                            Spacer()
+                        }
+                    }
+                    .padding(30.0)
+                    List {
+                        ForEach(foods) { food in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("\(food.name)")
+                                        .font(.title)
+                                        .padding(.bottom)
+                                    Text("\(food.calories, specifier: "%.0f") calories")
+                                        .font(.title2)
+                                }
+                                .minimumScaleFactor(0.01)
+                                Spacer()
+                                VStack(alignment: .trailing) {
+                                    Text("Serving Size: \(food.serving_size_g, specifier: "%.1f")g")
+                                    Text("Total Fat: \(food.fat_total_g, specifier: "%.1f")g")
+                                    Text("Saturated Fat: \(food.fat_saturated_g, specifier: "%.1f")g")
+                                    Text("Protein: \(food.protein_g, specifier: "%.1f")g")
+                                    Text("Sodium: \(food.sodium_mg, specifier: "%.1f")mg")
+                                    Text("Potassium: \(food.potassium_mg, specifier: "%.1f")mg")
+                                    Text("Cholesterol: \(food.cholesterol_mg, specifier: "%.1f")mg")
+                                    Text("Carbohydrates: \(food.carbohydrates_total_g, specifier: "%.1f")g")
+                                    Text("Fiber: \(food.fiber_g, specifier: "%.1f")g")
+                                    Text("Sugar: \(food.sugar_g, specifier: "%.1f")g")
+                                }
+                                .minimumScaleFactor(0.01)
+                                .font(.system(size: 18.0))
+                            }
+                            .listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .padding()
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+            )
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
